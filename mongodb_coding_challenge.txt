@@ -1,0 +1,204 @@
+//Mongodb coding challenge
+
+//create database
+
+> use coding_challenge
+switched to db coding_challenge
+
+// create collection employee
+> db.createCollection('employee')
+{ "ok" : 1 }
+
+// create collection project
+> db.createCollection('project ')
+{ "ok" : 1 }
+
+// create collection emp_proj
+> db.createCollection('emp_proj')
+{ "ok" : 1 }
+
+// Display all collections
+> show collections
+emp_proj
+employee
+project
+
+//Create documents for employee
+
+> db.employee.insert({emp_id:"E101",emp_first_name:"john",emp_last_name:"Doe",email:"JD@gmail.com",loc:"mumbai",salary:"25000"})
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({emp_id:"E102",emp_first_name:"adams",emp_last_name:"smith",email:"adams_smith@gmail.com",loc:"pune",salary:"23000"}
+... )
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({emp_id:"E103",emp_first_name:"clark",emp_last_name:"evans",email:"clarkevans@gmail.com",loc:"noida",salary:"30000"})
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({emp_id:"E104",emp_first_name:"hills",emp_last_name:"jones",email:"hillsjones@gmail.com",loc:"noida",salary:"35000"})
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({emp_id:"E105",emp_first_name:"jane",emp_last_name:"doe",email:"janedoe@gmail.com",loc:"kolkata",salary:"60000"})
+WriteResult({ "nInserted" : 1 })
+
+//Create documents for project
+
+> db.project.insert({proj_id:"P101",proj_name:"php",proj_desc:"a php project",proj_start_date:"2020-05-15",proj_end_date:"2020-09-15"})
+WriteResult({ "nInserted" : 1 })
+> db.project.insert({proj_id:"P102",proj_name:"java",proj_desc:"a java project",proj_start_date:"2020-01-10",proj_end_date:"2020-07-15"})
+WriteResult({ "nInserted" : 1 })
+> db.project.insert({proj_id:"P103",proj_name:"python",proj_desc:"a python project",proj_start_date:"2020-09-15",proj_end_date:"2021-03-15"})
+WriteResult({ "nInserted" : 1 })
+> db.project.insert({proj_id:"P104",proj_name:"website",proj_desc:"a website project",proj_start_date:"2021-05-15",proj_end_date:"2022-01-01"})
+WriteResult({ "nInserted" : 1 })
+> db.project.insert({proj_id:"P105",proj_name:"ML",proj_desc:"a machine learning project",proj_start_date:"2021-03-10",proj_end_date:"2021-11-25"})
+WriteResult({ "nInserted" : 1 })
+
+//Create documents for emp_proj
+
+> db.emp_proj.insert({emp_proj_id:"EP0001",emp_id:"E101",proj_id:"P101",proj_manager:"E101"})
+WriteResult({ "nInserted" : 1 })
+> db.emp_proj.insert({emp_proj_id:"EP0002",emp_id:"E103",proj_id:"P101",proj_manager:"E101"})
+WriteResult({ "nInserted" : 1 })
+> db.emp_proj.insert({emp_proj_id:"EP0003",emp_id:"E104",proj_id:"P101",proj_manager:"E101"})
+WriteResult({ "nInserted" : 1 })
+> db.emp_proj.insert({emp_proj_id:"EP0004",emp_id:"E102",proj_id:"P102",proj_manager:"E102"})
+WriteResult({ "nInserted" : 1 })
+> db.emp_proj.insert({emp_proj_id:"EP0005",emp_id:"E104",proj_id:"P102",proj_manager:"E102"})
+WriteResult({ "nInserted" : 1 })
+
+//Retrive all employee documents
+> db.employee.find()
+{ "_id" : ObjectId("60f2c17d515328ae973055dc"), "emp_id" : "E101", "emp_first_name" : "john", "emp_last_name" : "Doe", "email" : "JD@gmail.com", "loc" : "mumbai", "salary" : "25000" }
+{ "_id" : ObjectId("60f2c256515328ae973055dd"), "emp_id" : "E102", "emp_first_name" : "adams", "emp_last_name" : "smith", "email" : "adams_smith@gmail.com", "loc" : "pune", "salary" : "23000" }
+{ "_id" : ObjectId("60f2c34a515328ae973055de"), "emp_id" : "E103", "emp_first_name" : "clark", "emp_last_name" : "evans", "email" : "clarkevans@gmail.com", "loc" : "noida", "salary" : "30000" }
+{ "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : "35000" }
+{ "_id" : ObjectId("60f2c416515328ae973055e0"), "emp_id" : "E105", "emp_first_name" : "jane", "emp_last_name" : "doe", "email" : "janedoe@gmail.com", "loc" : "kolkata", "salary" : "60000" }
+
+//retrieve all project documents
+> db.project.find()
+{ "_id" : ObjectId("60f2c5b4515328ae973055e1"), "proj_id" : "P101", "proj_name" : "php", "proj_desc" : "a php project", "proj_start_date" : "2020-05-15", "proj_end_date" : "2020-09-15" }
+{ "_id" : ObjectId("60f2c6d4515328ae973055e2"), "proj_id" : "P102", "proj_name" : "java", "proj_desc" : "a java project", "proj_start_date" : "2020-01-10", "proj_end_date" : "2020-07-15" }
+{ "_id" : ObjectId("60f2c6d4515328ae973055e3"), "proj_id" : "P103", "proj_name" : "python", "proj_desc" : "a python project", "proj_start_date" : "2020-09-15", "proj_end_date" : "2021-03-15" }
+{ "_id" : ObjectId("60f2c6d4515328ae973055e4"), "proj_id" : "P104", "proj_name" : "website", "proj_desc" : "a website project", "proj_start_date" : "2021-05-15", "proj_end_date" : "2022-01-01" }
+{ "_id" : ObjectId("60f2c744515328ae973055e5"), "proj_id" : "P105", "proj_name" : "ML", "proj_desc" : "a machine learning project", "proj_start_date" : "2021-03-10", "proj_end_date" : "2021-11-25" }
+
+//retrieve all emp_proj documents
+> db.emp_proj.find()
+{ "_id" : ObjectId("60f3d32f515328ae973055e6"), "emp_proj_id" : "EP0001", "emp_id" : "E101", "proj_id" : "P101", "proj_manager" : "E101" }
+{ "_id" : ObjectId("60f3d459515328ae973055e7"), "emp_proj_id" : "EP0002", "emp_id" : "E103", "proj_id" : "P101", "proj_manager" : "E101" }
+{ "_id" : ObjectId("60f3d459515328ae973055e8"), "emp_proj_id" : "EP0003", "emp_id" : "E104", "proj_id" : "P101", "proj_manager" : "E101" }
+{ "_id" : ObjectId("60f3d459515328ae973055e9"), "emp_proj_id" : "EP0004", "emp_id" : "E102", "proj_id" : "P102", "proj_manager" : "E102" }
+{ "_id" : ObjectId("60f3d45c515328ae973055ea"), "emp_proj_id" : "EP0005", "emp_id" : "E104", "proj_id" : "P102", "proj_manager" : "E102" }
+
+//retrieve document bt ID
+> db.project.find(ObjectId("60f2c6d4515328ae973055e3"))
+{ "_id" : ObjectId("60f2c6d4515328ae973055e3"), "proj_id" : "P103", "proj_name" : "python", "proj_desc" : "a python project", "proj_start_date" : "2020-09-15", "proj_end_date" : "2021-03-15" }
+
+//retrieve employee by first name
+> db.employee.find({emp_first_name:"hills"})
+{ "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : "35000" }
+
+//retrieve employee by partial match
+> db.employee.find({emp_first_name:/ada/})
+{ "_id" : ObjectId("60f2c256515328ae973055dd"), "emp_id" : "E102", "emp_first_name" : "adams", "emp_last_name" : "smith", "email" : "adams_smith@gmail.com", "loc" : "pune", "salary" : "23000" }
+
+//retrieve employee using multiple fields
+> db.employee.find({emp_first_name:"jane",loc: "kolkata"})
+{ "_id" : ObjectId("60f2c416515328ae973055e0"), "emp_id" : "E105", "emp_first_name" : "jane", "emp_last_name" : "doe", "email" : "janedoe@gmail.com", "loc" : "kolkata", "salary" : "60000" }
+
+//retrieve employee with salary greater than 30000
+> db.employee.find({salary:{$gt:"30000"}})
+{ "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : "35000" }
+{ "_id" : ObjectId("60f2c416515328ae973055e0"), "emp_id" : "E105", "emp_first_name" : "jane", "emp_last_name" : "doe", "email" : "janedoe@gmail.com", "loc" : "kolkata", "salary" : "60000" }
+
+//retrieve employee with salary greater than 24000 and less than 50000
+> db.employee.find({$and: [{salary:{$gt:"24000"}},{salary: {$lt: "50000"}}]})
+{ "_id" : ObjectId("60f2c17d515328ae973055dc"), "emp_id" : "E101", "emp_first_name" : "john", "emp_last_name" : "Doe", "email" : "JD@gmail.com", "loc" : "mumbai", "salary" : "25000" }
+{ "_id" : ObjectId("60f2c34a515328ae973055de"), "emp_id" : "E103", "emp_first_name" : "clark", "emp_last_name" : "evans", "email" : "clarkevans@gmail.com", "loc" : "noida", "salary" : "30000" }
+{ "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : "35000" }
+
+//Update the salary of a employee
+> var p = db.employee.findOne(ObjectId("60f2c407515328ae973055df"))
+> p.salary = 50000
+50000
+> db.employee.save(p)
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+//Update the existing document
+> db.employee.update({emp_id:"E103",emp_first_name:"clark",emp_last_name:"evans",email:"clarkevans@gmail.com",loc:"noida",salary:"30000"},{emp_id:"E103",emp_first_name:"clark",emp_last_name:"evans",email:"clarkevans@gmail.com",loc:"noida",salary:"40000"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+//Update the existing document
+> db.employee.update({'emp_first_name':'jane'},{$set:{'emp_first_name':'john'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+//Update multiple documents
+> db.employee.update({'emp_first_name':'john'},{$set:{'emp_first_name':'justin'}},{multi:true})
+WriteResult({ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 })
+
+//Update multiple documents
+
+> db.employee.updateMany({salary:{$gt:"30000"}},{$set:{salary:"52000"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+
+//retrieve first name and last name as name from employee
+
+> db.employee.aggregate({$project:{name:{$concat:['$emp_first_name',' ','$emp_last_name']}}})
+{ "_id" : ObjectId("60f2c17d515328ae973055dc"), "name" : "justin Doe" }
+{ "_id" : ObjectId("60f2c256515328ae973055dd"), "name" : "adams smith" }
+{ "_id" : ObjectId("60f2c34a515328ae973055de"), "name" : "clark evans" }
+{ "_id" : ObjectId("60f2c407515328ae973055df"), "name" : "hills jones" }
+{ "_id" : ObjectId("60f2c416515328ae973055e0"), "name" : "justin doe" }
+
+//Retrieve the data from multiple collections
+//join employee and emp_proj collection
+
+> db.emp_proj.aggregate([{$lookup: {from:"employee", localField:"emp_id", foreignField: "emp_id", as:"emp_details"}}])
+{ "_id" : ObjectId("60f3d32f515328ae973055e6"), "emp_proj_id" : "EP0001", "emp_id" : "E101", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : [ { "_id" : ObjectId("60f2c17d515328ae973055dc"), "emp_id" : "E101", "emp_first_name" : "justin", "emp_last_name" : "Doe", "email" : "JD@gmail.com", "loc" : "mumbai", "salary" : "25000" } ] }
+{ "_id" : ObjectId("60f3d459515328ae973055e7"), "emp_proj_id" : "EP0002", "emp_id" : "E103", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : [ { "_id" : ObjectId("60f2c34a515328ae973055de"), "emp_id" : "E103", "emp_first_name" : "clark", "emp_last_name" : "evans", "email" : "clarkevans@gmail.com", "loc" : "noida", "salary" : "52000" } ] }
+{ "_id" : ObjectId("60f3d459515328ae973055e8"), "emp_proj_id" : "EP0003", "emp_id" : "E104", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : [ { "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : 50000 } ] }
+{ "_id" : ObjectId("60f3d459515328ae973055e9"), "emp_proj_id" : "EP0004", "emp_id" : "E102", "proj_id" : "P102", "proj_manager" : "E102", "emp_details" : [ { "_id" : ObjectId("60f2c256515328ae973055dd"), "emp_id" : "E102", "emp_first_name" : "adams", "emp_last_name" : "smith", "email" : "adams_smith@gmail.com", "loc" : "pune", "salary" : "23000" } ] }
+{ "_id" : ObjectId("60f3d45c515328ae973055ea"), "emp_proj_id" : "EP0005", "emp_id" : "E104", "proj_id" : "P102", "proj_manager" : "E102", "emp_details" : [ { "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : 50000 } ] }
+
+//Retrieve the data from multiple collections
+
+> db.emp_proj.aggregate([
+... { $lookup: {
+... from: "employee",
+... localField: "emp_id",
+... foreignField: "emp_id",
+... as: "emp_details"
+...  }
+... },
+... {
+... $unwind: "$emp_details"
+... },
+... {
+... $lookup: {
+... from: "project",
+... localField: "proj_id",
+... foreignField: "proj_id",
+... as: "project_details"
+... } },
+... {
+... $unwind: "$project_details"
+... }
+... ])
+
+{ "_id" : ObjectId("60f3d32f515328ae973055e6"), "emp_proj_id" : "EP0001", "emp_id" : "E101", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : { "_id" : ObjectId("60f2c17d515328ae973055dc"), "emp_id" : "E101", "emp_first_name" : "justin", "emp_last_name" : "Doe", "email" : "JD@gmail.com", "loc" : "mumbai", "salary" : "25000" }, "project_details" : { "_id" : ObjectId("60f2c5b4515328ae973055e1"), "proj_id" : "P101", "proj_name" : "php", "proj_desc" : "a php project", "proj_start_date" : "2020-05-15", "proj_end_date" : "2020-09-15" } }
+{ "_id" : ObjectId("60f3d459515328ae973055e7"), "emp_proj_id" : "EP0002", "emp_id" : "E103", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : { "_id" : ObjectId("60f2c34a515328ae973055de"), "emp_id" : "E103", "emp_first_name" : "clark", "emp_last_name" : "evans", "email" : "clarkevans@gmail.com", "loc" : "noida", "salary" : "52000" }, "project_details" : { "_id" : ObjectId("60f2c5b4515328ae973055e1"), "proj_id" : "P101", "proj_name" : "php", "proj_desc" : "a php project", "proj_start_date" : "2020-05-15", "proj_end_date" : "2020-09-15" } }
+{ "_id" : ObjectId("60f3d459515328ae973055e8"), "emp_proj_id" : "EP0003", "emp_id" : "E104", "proj_id" : "P101", "proj_manager" : "E101", "emp_details" : { "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : 50000 }, "project_details" : { "_id" : ObjectId("60f2c5b4515328ae973055e1"), "proj_id" : "P101", "proj_name" : "php", "proj_desc" : "a php project", "proj_start_date" : "2020-05-15", "proj_end_date" : "2020-09-15" } }
+{ "_id" : ObjectId("60f3d459515328ae973055e9"), "emp_proj_id" : "EP0004", "emp_id" : "E102", "proj_id" : "P102", "proj_manager" : "E102", "emp_details" : { "_id" : ObjectId("60f2c256515328ae973055dd"), "emp_id" : "E102", "emp_first_name" : "adams", "emp_last_name" : "smith", "email" : "adams_smith@gmail.com", "loc" : "pune", "salary" : "23000" }, "project_details" : { "_id" : ObjectId("60f2c6d4515328ae973055e2"), "proj_id" : "P102", "proj_name" : "java", "proj_desc" : "a java project", "proj_start_date" : "2020-01-10", "proj_end_date" : "2020-07-15" } }
+{ "_id" : ObjectId("60f3d45c515328ae973055ea"), "emp_proj_id" : "EP0005", "emp_id" : "E104", "proj_id" : "P102", "proj_manager" : "E102", "emp_details" : { "_id" : ObjectId("60f2c407515328ae973055df"), "emp_id" : "E104", "emp_first_name" : "hills", "emp_last_name" : "jones", "email" : "hillsjones@gmail.com", "loc" : "noida", "salary" : 50000 }, "project_details" : { "_id" : ObjectId("60f2c6d4515328ae973055e2"), "proj_id" : "P102", "proj_name" : "java", "proj_desc" : "a java project", "proj_start_date" : "2020-01-10", "proj_end_date" : "2020-07-15" } }
+
+//Delete the existing document
+> employee = db.employee.remove({emp_first_name:'clark'})
+WriteResult({ "nRemoved" : 1 })
+
+//Delete existing document 
+> db.employee.deleteMany({emp_first_name:'justin'})
+{ "acknowledged" : true, "deletedCount" : 2 }
+
+//Delete existing document using filter
+> db.employee.deleteMany({salary:{$gt: "20000"}})
+{ "acknowledged" : true, "deletedCount" : 2 }
+
+
+
